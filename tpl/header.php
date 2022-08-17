@@ -14,33 +14,42 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 
-<body class="d-flex min-vh-100">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="./"><?= LOGO ?></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+<body class="d-flex flex-column min-vh-100">
+    <header>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark" aria-label="Fourth navbar example">
+            <div class="container">
+                <a class="navbar-brand" href="./"><?= LOGO ?></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-            <div class="collapse navbar-collapse" id="navbarsExample04">
-                <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="./about.php">about</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="./blog.php">blog</a>
-                    </li>
-
-                    <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+                <div class="collapse navbar-collapse" id="navbarsExample04">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="./sign_in">sign in</a>
+                            <a class="nav-link active" aria-current="page" href="./about.php">about</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="sign_up">sign up</a>
+                            <a class="nav-link" href="./blog.php">blog</a>
                         </li>
-
+                        <?php if (!isset($_SESSION['user_id'])) : ?>
+                            <ul class="navbar-nav ms-auto mb-2 mb-md-0">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="./sign_in">sign in</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="sign_up">sign up</a>
+                                </li>
+                            <?php else : ?>
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="./profile.php"><?= $_SESSION['user_name'] ?></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="sign_out.php">sign out</a>
+                                </li>
+                            <?php endif; ?>
+                            </ul>
                     </ul>
-                </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
