@@ -2,22 +2,20 @@
     <div class="container p-4">
         <section class="mb-4">
             <!-- Facebook -->
-            <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/dor.achinakar" role="button"><i class="fab fa-facebook-f"></i></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="https://www.facebook.com/dor.achinakar" role="button"><i class="bi bi-facebook"></i></a>
 
-            <!-- Twitter -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-twitter"></i></a>
 
             <!-- Google -->
-            <a class="btn btn-outline-light btn-floating m-1" href="https://www.google.co.il/" role="button"><i class="fab fa-google"></i></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="https://www.google.co.il/" role="button"><i class="bi bi-google"></i></a>
 
             <!-- Instagram -->
-            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="fab fa-instagram"></i></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"><i class="bi bi-instagram"></i></a>
 
             <!-- Linkedin -->
-            <a class="btn btn-outline-light btn-floating m-1" href="https://www.linkedin.com/in/dor-achinakar-84a38a226/" role="button"><i class="fab fa-linkedin-in"></i></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="https://www.linkedin.com/in/dor-achinakar-84a38a226/" role="button"><i class="bi bi-linkedin"></i></a>
 
             <!-- Github -->
-            <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/Dorachinakar" role="button"><i class="fab fa-github"></i></a>
+            <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/Dorachinakar" role="button"><i class="bi bi-github"></i></a>
         </section>
         <!-- Section: Social media -->
 
@@ -26,22 +24,14 @@
             <form action="">
 
                 <div class="row d-flex justify-content-center">
-                    <div class="col-auto">
-                        <p class="pt-2">
-                            <strong>Sign up for our newsletter</strong>
-                        </p>
-                    </div>
+
                     <div class="col-md-5 col-12">
                         <div class="form-outline form-white mb-4">
-                            <input type="email" id="dor259dor@gmail.com" class="form-control" />
+
                             <label class="form-label" for="dor259dor@gmail.com">dor259dor@gmail.com</label>
                         </div>
                     </div>
-                    <div class="col-auto">
-                        <button type="submit" class="btn btn-outline-light mb-4">
-                            Subscribe
-                        </button>
-                    </div>
+
                 </div>
             </form>
         </section>

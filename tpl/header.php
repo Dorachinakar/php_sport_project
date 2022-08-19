@@ -31,24 +31,25 @@
                         <li class="nav-item">
                             <a class="nav-link" href="./blog.php">blog</a>
                         </li>
-                        <?php if (!isset($_SESSION['user_id'])) : ?>
-                            <ul class="navbar-nav ms-auto mb-2 mb-md-0">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="./sign_in">sign in</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="sign_up">sign up</a>
-                                </li>
-                            <?php else : ?>
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="./profile.php"><?= $_SESSION['user_name'] ?></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="sign_out.php">sign out</a>
-                                </li>
-                            <?php endif; ?>
-                            </ul>
                     </ul>
+                    <?php if (!isset($_SESSION['user_id'])) : ?>
+                        <ul class="navbar-nav ms-auto mb-2 mb-sm-0">
+                            <li class="nav-item ">
+                                <a class="nav-link active" aria-current="page" href="./sign_in">sign in</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="sign_up">sign up</a>
+                            </li>
+                        <?php else : ?>
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="./profile.php"><?= $_SESSION['user_name'] ?></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="sign_out.php">sign out</a>
+                            </li>
+                        <?php endif; ?>
+                        </ul>
+
                 </div>
             </div>
         </nav>
