@@ -13,9 +13,23 @@ if (!function_exists('old_field_value')) {
 if (!function_exists('user_auth')) {
     function user_auth()
     {
-        return isset($_SESSION['user_id']);
+        if (
+            isset($_SESSION['user_id']) &&
+            isset($_SESSION['user_ip']) &&
+            $_SESSION['user_ip'] === $_SERVER['REMOTE_ADDR'] &&
+            isset($_SESSION['user_agent']) &&
+            $_SESSION['user_agent'] === $_SERVER['HTTP_USER_AGENT'] &&
+            isset($_SESSION['user_browser']) &&
+            $_SESSION['user_browser'] === $_SERVER['HTTP_SEC_CH_UA']
+
+        ) {
+            return  true;
+        } else {
+            return false;
+        }
     }
 }
+
 
 if (!function_exists("field_errors")) {
     $errors = [];
@@ -29,10 +43,15 @@ if (!function_exists("field_errors")) {
 }
 
 if (!function_exists('login_user')) {
-    function login_user($uid, $name, $location = null)
+    function login_user($uid, $name, $profile, $location = null)
     {
         $_SESSION['user_id'] = $uid;
         $_SESSION['user_name'] = $name;
+        $_SESSION['profile_image'] = $profile;
+        $_SESSION['user_ip'] = $_SERVER['REMOTE_ADDR'];
+        $_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
+        $_SESSION['user_browser'] = $_SERVER['HTTP_SEC_CH_UA'];
+
         if (isset($location)) {
             header("location: $location");
             exit;
@@ -40,18 +59,58 @@ if (!function_exists('login_user')) {
     }
 }
 
-
-
 if (!function_exists('redirect_unauthorized')) {
     function redirect_unauthorized($redirect_if_is_logged = false, $location = './')
     {
-        if (
-            ($redirect_if_is_logged && user_auth()) ||
+        if (($redirect_if_is_logged && user_auth()) ||
             (!$redirect_if_is_logged && !user_auth())
-
         ) {
-            header("locatiob:$location");
+            header("location:$location");
             exit;
         }
+    }
+}
+
+if (!function_exists('email_exists')) {
+    function email_exists($link, $email)
+    {
+        $email = mysqli_real_escape_string($link, $email);
+        $sql = "SELECT * FROM users WHERE email = '$email' LIMIT 1";
+        $result = mysqli_query($link, $sql);
+        if (
+            $result && mysqli_num_rows($result) > 0
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+}
+
+if (!function_exists('csrf_name')) {
+    function csrf_name()
+    {
+        return 'csrf_token';
+    }
+}
+if (!function_exists('csrf')) {
+    function csrf()
+    {
+        $token = sha1(rand(1, 10000000) . '$$' . rand(1, 1000000000000) . ' sport_blog');
+        $_SESSION[csrf_name()] = $token;
+        return $token;
+    }
+}
+
+
+if (!function_exists('validate_csrf')) {
+
+    function validate_csrf()
+    {
+        if (isset($_REQUEST[csrf_name()]) && isset($_SESSION[csrf_name()])) {
+            return $_REQUEST[csrf_name()] === $_SESSION[csrf_name()];
+        }
+
+        return false;
     }
 }
